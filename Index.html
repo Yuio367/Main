@@ -6,54 +6,135 @@
     <title>AI Study Tool</title>
     <style>
         body {
-            background-color: black;
+            background-color: #000;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
         }
-        h1 {
-            color: cyan;
+        .container {
+            width: 90%;
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background: #111;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #fff;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input {
+            background: #222;
+            color: white;
+        }
+        button {
+            background: #0f0;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0c0;
         }
         .menu {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            justify-content: space-between;
+        }
+        .menu button {
+            width: 30%;
+            background: #444;
+        }
+        .menu button.active {
+            background: #0f0;
+        }
+        .ai-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: #222;
+            border-radius: 5px;
+        }
+        .links {
             margin-top: 20px;
         }
-        button {
-            background: #222;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:hover {
-            background: cyan;
-            color: black;
-        }
-        #chatbox {
-            margin-top: 30px;
-            padding: 10px;
-            background: #111;
-            border: 1px solid cyan;
+        .links a {
+            color: #0f0;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            margin: 5px 0;
         }
     </style>
 </head>
 <body>
-    <h1>AI Study Tool</h1>
-    <div class="menu">
-        <button onclick="changeMode('math')">Mathematics</button>
-        <button onclick="changeMode('physics')">Physics</button>
-        <button onclick="changeMode('chemistry')">Chemistry</button>
+
+    <div class="container">
+        <h2>AI Study Tool</h2>
+
+        <!-- Login Form -->
+        <div id="login-form">
+            <input type="text" id="username" placeholder="Enter Username">
+            <input type="password" id="password" placeholder="Enter Password">
+            <button onclick="login()">Login</button>
+        </div>
+
+        <!-- Study Tool (Hidden until login) -->
+        <div id="study-tool" style="display:none;">
+            <div class="menu">
+                <button id="physics-btn" onclick="selectMode('physics')">Physics</button>
+                <button id="chemistry-btn" onclick="selectMode('chemistry')">Chemistry</button>
+                <button id="math-btn" onclick="selectMode('math')">Math</button>
+            </div>
+
+            <div class="ai-box">
+                <input type="text" id="ai-question" placeholder="Type your question...">
+                <button onclick="askAI()">Solve Your Problem</button>
+            </div>
+
+            <div class="links">
+                <a href="https://chat.openai.com" target="_blank">ChatGPT</a>
+                <a href="https://www.deepseek.com" target="_blank">DeepSeek</a>
+            </div>
+        </div>
     </div>
-    <div id="chatbox">
-        <p>Select a subject and start solving problems!</p>
-    </div>
+
     <script>
-        function changeMode(subject) {
-            document.getElementById("chatbox").innerHTML = `<p>AI is now set to ${subject}. Ask your question!</p>`;
+        // Fake Login System
+        function login() {
+            let user = document.getElementById("username").value;
+            let pass = document.getElementById("password").value;
+
+            if (user && pass) {
+                document.getElementById("login-form").style.display = "none";
+                document.getElementById("study-tool").style.display = "block";
+            } else {
+                alert("Please enter a username and password.");
+            }
+        }
+
+        // Mode Selection
+        function selectMode(mode) {
+            document.getElementById("physics-btn").classList.remove("active");
+            document.getElementById("chemistry-btn").classList.remove("active");
+            document.getElementById("math-btn").classList.remove("active");
+
+            document.getElementById(mode + "-btn").classList.add("active");
+        }
+
+        // AI Question Handling
+        function askAI() {
+            let question = document.getElementById("ai-question").value;
+            if (question) {
+                alert("AI is solving: " + question);
+            } else {
+                alert("Please enter a question.");
+            }
         }
     </script>
+
 </body>
 </html>
