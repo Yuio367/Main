@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Tool</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: cyan;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        button {
+            background: #222;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: cyan;
+            color: black;
+        }
+        #chatbox {
+            margin-top: 30px;
+            padding: 10px;
+            background: #111;
+            border: 1px solid cyan;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Study Tool</h1>
+    <div class="menu">
+        <button onclick="changeMode('math')">Mathematics</button>
+        <button onclick="changeMode('physics')">Physics</button>
+        <button onclick="changeMode('chemistry')">Chemistry</button>
+    </div>
+    <div id="chatbox">
+        <p>Select a subject and start solving problems!</p>
+    </div>
+    <script>
+        function changeMode(subject) {
+            document.getElementById("chatbox").innerHTML = `<p>AI is now set to ${subject}. Ask your question!</p>`;
+        }
+    </script>
+</body>
+</html>
